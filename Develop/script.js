@@ -27,19 +27,17 @@ $(document).ready(function() {
     timeBlockUpdater();
     
     $(".saveBtn").on("click", function() {
-        var textVal,
-        textTime;
+        var textVal = $(this).siblings("textarea").html(),
+        textTime = $(this).parent().attr("id");
 
-        localStorage.setItem( textVal, $(this).siblings("textarea").html());
-        // localStorage.setItem( textTime, $(this).parent().attr("id"));
+        localStorage.setItem("text", JSON.stringify(textVal));
+        // localStorage.setItem("time", textTime);
 
-        textVal = localStorage.getItem(textVal);
-        textTime = localStorage.getItem(textTime);
+        textVal = JSON.parse(localStorage.getItem("text"));
+        // textTime = localStorage.getItem("time");
         
-        
-
         // localStorage.getItem
-        console.log($(this).siblings("textarea").html());
+         console.log(textVal);
     });
 
 
