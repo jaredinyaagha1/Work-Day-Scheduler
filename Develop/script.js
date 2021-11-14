@@ -27,7 +27,7 @@ $(document).ready(function() {
     timeBlockUpdater();
     
     $(".saveBtn").on("click", function() {
-        var textVal = $(this).siblings("textarea").html(),
+        var textVal = $(this).siblings("textarea").text(),
         textTime = $(this).parent().attr("id");
 
         localStorage.setItem(textTime, JSON.stringify(textVal));
