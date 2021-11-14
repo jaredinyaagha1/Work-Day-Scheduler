@@ -22,22 +22,32 @@ $(document).ready(function() {
             }
         })
     }
-    dateUpdater();
 
-    timeBlockUpdater();
-    
+    function timeBlockSetter (save) {
+            var save = JSON.parse(localStorage.getItem(inputTime));
+            console.log(save);
+        $(".time-block").each(function() {
+            
+            console.log(save)
+
+            
+        })
+    }
+   
     $(".saveBtn").on("click", function() {
-        var textVal = $(this).siblings("textarea").text(),
-        textTime = $(this).parent().attr("id");
+        var inputVal = JSON.stringify($(this).siblings("textarea")[0].value),
+        inputTime = JSON.stringify($(this).parent().attr("id"));
 
-        localStorage.setItem(textTime, JSON.stringify(textVal));
-        // localStorage.setItem("time", JSON.stringify(textTime));
-
-        textVal = JSON.parse(localStorage.getItem(textTime));
-        // textTime = localStorage.getItem("time");
-        
-        // localStorage.getItem
-         console.log(textVal);
+        var inputSave = localStorage.setItem(inputTime, inputVal);
+        // console.log(JSON.parse(localStorage.getItem(inputTime)));
+        timeBlockSetter(inputSave);
     });
 
+     
+    dateUpdater();
+    timeBlockUpdater();
+    // 
+    
+
+    
 });
