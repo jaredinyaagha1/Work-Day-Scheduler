@@ -30,20 +30,14 @@ $(document).ready(function() {
         var textVal = $(this).siblings("textarea").html(),
         textTime = $(this).parent().attr("id");
 
-        localStorage.setItem("text", JSON.stringify(textVal));
-        // localStorage.setItem("time", textTime);
+        localStorage.setItem(textTime, JSON.stringify(textVal));
+        // localStorage.setItem("time", JSON.stringify(textTime));
 
-        textVal = JSON.parse(localStorage.getItem("text"));
+        textVal = JSON.parse(localStorage.getItem(textTime));
         // textTime = localStorage.getItem("time");
         
         // localStorage.getItem
          console.log(textVal);
     });
-
-
-
-
-
-
 
 });
