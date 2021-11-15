@@ -24,7 +24,6 @@ $(document).ready(function() {
     }
 
     function timeBlockSetter () {
-
         $(".time-block").each(function(index) {
             var timeBlockID =  $(this).attr("id"),
             timeBlockText = $(this).children("textarea"),
@@ -32,14 +31,13 @@ $(document).ready(function() {
             militaryTime = index + 9;
             
             if (timeBlockID == militaryTime) {
-                console.log(timeBlockStorage);
-                timeBlockText.html(JSON.parse(timeBlockStorage))
+                timeBlockText.html(JSON.parse(timeBlockStorage));
             }
 
             else {
                 console.log("error");
-            }
-        })
+            };
+        });
     }
    
     $(".saveBtn").on("click", function() {
