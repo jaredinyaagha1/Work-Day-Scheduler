@@ -24,14 +24,22 @@ $(document).ready(function() {
     }
 
     function timeBlockSetter () {
-        JSON.parse(localStorage.getItem(inputTime));
 
         $(".time-block").each(function() {
+            var timeBlockID =  JSON.stringify($(this).attr("id")),
+            timeBlockText = $(this).children("textarea")[0],
+            timeBlockStorage = localStorage.getItem(timeBlockID);
             
-            if ($(this).attr("id") === inputTime) {
-                $(this).children("textarea")[0].value = localStorage.getItem(inputTime);
+            if (timeBlockID) {
+                console.log("keys: " + Object.keys(timeBlockStorage), "value: " + timeBlockStorage);
+                // console.log(timeBlockID);
+                // console.clear
+                // timeBlockText.text(timeBlockStorage)
             }
 
+            else {
+                console.log("error");
+            }
 
             
         })
@@ -41,9 +49,10 @@ $(document).ready(function() {
         var inputVal = JSON.stringify($(this).siblings("textarea")[0].value),
         inputTime = JSON.stringify($(this).parent().attr("id"));
 
-       localStorage.setItem(inputTime, inputVal);
-        // console.log(JSON.parse(localStorage.getItem(inputTime)));
-        // timeBlockSetter(inputSave);
+        localStorage.setItem(inputTime, inputVal);
+        // console.log(inputTime);
+        timeBlockSetter();
+
     });
 
      
@@ -51,6 +60,5 @@ $(document).ready(function() {
     timeBlockUpdater();
     timeBlockSetter();
     
-
     
 });
