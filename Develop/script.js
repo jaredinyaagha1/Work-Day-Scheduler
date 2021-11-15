@@ -23,12 +23,15 @@ $(document).ready(function() {
         })
     }
 
-    function timeBlockSetter (save) {
-            var save = JSON.parse(localStorage.getItem(inputTime));
-            console.log(save);
+    function timeBlockSetter () {
+        JSON.parse(localStorage.getItem(inputTime));
+
         $(".time-block").each(function() {
             
-            console.log(save)
+            if ($(this).attr("id") === inputTime) {
+                $(this).children("textarea")[0].value = localStorage.getItem(inputTime);
+            }
+
 
             
         })
@@ -38,15 +41,15 @@ $(document).ready(function() {
         var inputVal = JSON.stringify($(this).siblings("textarea")[0].value),
         inputTime = JSON.stringify($(this).parent().attr("id"));
 
-        var inputSave = localStorage.setItem(inputTime, inputVal);
+       localStorage.setItem(inputTime, inputVal);
         // console.log(JSON.parse(localStorage.getItem(inputTime)));
-        timeBlockSetter(inputSave);
+        // timeBlockSetter(inputSave);
     });
 
      
     dateUpdater();
     timeBlockUpdater();
-    // 
+    timeBlockSetter();
     
 
     
