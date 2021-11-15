@@ -6,7 +6,7 @@ $(document).ready(function() {
 
     function timeBlockUpdater () {
         var currHour = moment().hour();
-        // 
+
         $(".time-block").each(function() {
             var timeBlockHour = parseInt($(this).attr("id"));
 
@@ -25,23 +25,20 @@ $(document).ready(function() {
 
     function timeBlockSetter () {
 
-        $(".time-block").each(function() {
-            var timeBlockID =  JSON.stringify($(this).attr("id")),
-            timeBlockText = $(this).children("textarea")[0],
-            timeBlockStorage = localStorage.getItem(timeBlockID);
+        $(".time-block").each(function(index) {
+            var timeBlockID =  $(this).attr("id"),
+            timeBlockText = $(this).children("textarea"),
+            timeBlockStorage = localStorage.getItem(JSON.stringify(timeBlockID));
+            militaryTime = index + 9;
             
-            if (timeBlockID) {
-                console.log("keys: " + Object.keys(timeBlockStorage), "value: " + timeBlockStorage);
-                // console.log(timeBlockID);
-                // console.clear
-                // timeBlockText.text(timeBlockStorage)
+            if (timeBlockID == militaryTime) {
+                console.log(timeBlockStorage);
+                timeBlockText.html(JSON.parse(timeBlockStorage))
             }
 
             else {
                 console.log("error");
             }
-
-            
         })
     }
    
@@ -50,15 +47,9 @@ $(document).ready(function() {
         inputTime = JSON.stringify($(this).parent().attr("id"));
 
         localStorage.setItem(inputTime, inputVal);
-        // console.log(inputTime);
-        timeBlockSetter();
-
     });
 
-     
     dateUpdater();
     timeBlockUpdater();
     timeBlockSetter();
-    
-    
 });
